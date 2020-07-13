@@ -6,15 +6,15 @@ class Node:
         self.children = children
 """
 
-class Solution:
-    def preorder(self, root: 'Node') -> List[int]:
-        if not root:
-            return []
+# class Solution:
+#     def preorder(self, root: 'Node') -> List[int]:
+#         if not root:
+#             return []
         
-        result = [root.val,]
-        for c in root.children:
-            result.extend(self.preorder(c))
-        return result
+#         result = [root.val,]
+#         for c in root.children:
+#             result.extend(self.preorder(c))
+#         return result
 
 class Solution:
     def postorder(self, root: 'Node') -> List[int]:
