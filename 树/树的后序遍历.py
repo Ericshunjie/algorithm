@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution:
-    def postorderTraversal(self， root):
+    def postorderTraversal(self, root):
         result = []
         stack = [root,]
         while stack:
