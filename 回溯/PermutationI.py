@@ -1,5 +1,5 @@
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    def permute(self, nums):
         if not nums:
             return []
         def backtrace(first=0):

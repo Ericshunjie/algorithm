@@ -1,5 +1,5 @@
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
+    def canJump(self, nums) -> bool:
         n = len(nums)
         rightmost = 0
         for i in range(n):

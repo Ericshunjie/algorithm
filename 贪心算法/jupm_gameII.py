@@ -1,5 +1,5 @@
 class Solution:
-    def jump(self, nums: List[int]) -> int:
+    def jump(self, nums) -> int:
         n = len(nums)
         end, rightmax, step = 0,0, 0
         for i in range(n-1):

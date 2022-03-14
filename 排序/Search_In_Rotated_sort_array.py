@@ -1,8 +1,9 @@
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums, target) -> int:
         if not nums:
             return -1
         l,r = 0, len(nums) - 1
+        ##  二分法
         while l <= r:
             mid = l + (r - l) // 2
             if nums[mid] == target:

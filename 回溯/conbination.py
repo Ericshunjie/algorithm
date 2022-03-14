@@ -1,5 +1,5 @@
 class Solution:
-    def combine(self, n: int, k: int) -> List[List[int]]:
+    def combine(self, n: int, k: int):
         self.result = []
         self.generator(0, k, [], n)
         return self.result

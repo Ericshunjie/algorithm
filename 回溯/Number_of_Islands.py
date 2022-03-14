@@ -1,5 +1,5 @@
 class Solution:
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands(self, grid) -> int:
         def dfs(grid, row, column):
             grid[row][column] = '0'
             if (row-1) >= 0 and grid[row-1][column] == '1':
