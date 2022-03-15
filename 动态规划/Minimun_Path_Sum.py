@@ -1,5 +1,5 @@
 class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
+    def minPathSum(self, grid) -> int:
         if len(grid) == 0 or len(grid[0]) == 0:
             return None
         rows, cols = len(grid), len(grid[0])

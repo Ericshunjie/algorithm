@@ -47,7 +47,7 @@
 #         DFS([], [], [])
 #         return [["."*j + 'Q' + "."*(n-j-1)for j in i] for i in result]
 class Solution:
-    def solveNQueens(self, n: int) -> List[List[str]]:
+    def solveNQueens(self, n: int):
         def DFS(queens, xy_dif, xy_sum):
             l = len(queens)
             if l == n:

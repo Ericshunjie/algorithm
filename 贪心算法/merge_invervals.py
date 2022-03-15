@@ -1,5 +1,5 @@
 class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    def merge(self, intervals):
         intervals.sort(key=lambda x:x[0])
 
         merges = []
