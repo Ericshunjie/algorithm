@@ -1,25 +1,20 @@
 class Solution:
-    def canCompleteCircuit(self, gas, cost) -> int:
+    def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+
+        # cumsum 小于0直接从下一个开始
+
+        cumsum = 0
+        totalsum = 0
         n = len(gas)
+        start = 0
         for i in range(n):
-            station = i
-            all_gas = 0
-            while all_gas >= 0:
-                all_gas += gas[station]
-
-                next_cost = cost[station]
-
-                all_gas -= next_cost
-                if all_gas < 0:
-                    break
-
-                station += 1
-                station %= n
-                if station == i:
-                    break
-            if all_gas >= 0:
-                return i
-        return -1
+            cumsum += gas[i] - cost[i]
+            totalsum += gas[i] - cost[i]
+            if cumsum < 0:
+                start = i + 1
+                cumsum = 0
+        if sum(gas) < sum(cost):return -1
+        return start
 
 s = Solution()
 r = s.canCompleteCircuit([1,2,3,4,5], [3,4,5,1,2])
