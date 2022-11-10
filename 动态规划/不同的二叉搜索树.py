@@ -20,7 +20,7 @@ class TreeNode:
         self.left = left
         self.right = right
 class Solution:
-    def generateTrees(self, n: int):
+    def generateTrees(self, n):
 
         def generatestrees(start, end):
             if start > end:

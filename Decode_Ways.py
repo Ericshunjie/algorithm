@@ -1,5 +1,5 @@
 class Solution:
-    def numDecodings(self, s: str) -> int:
+    def numDecodings(self, s):
         if len(s) == 0 or s[0] == '0':return 0
         dp = [0 for i in range(len(s) + 1)]
         dp[1] = 1
@@ -12,7 +12,7 @@ class Solution:
         return dp[-1]
 
 class Solution:
-    def numDecodings(self, s: str) -> int:
+    def numDecodings(self, s):
         if not s or s[0] == '0':
             return 0
         pre, cur = 1, 1 #dp[-1]==dp[0] ==1
