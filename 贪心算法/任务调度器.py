@@ -24,5 +24,28 @@ class Solution:
                         counter[k[0]] -= 1
         print(result)
         return len(result)
+
+class Solution(object):
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        # 排序后的贪心
+        # 取计数最多的字母，(maxcount -1) *(n+1) + 1是正常状态下的结果
+        # 但是，一、会有计数等于最多字母的情况 比如A3个B3个 ，此时 (maxcount -1) *(n+1) + max_count
+        # 另一种情况是 如果(maxcount -1) *(n+1) + max_count 之后还有没有填充的任务，
+        # 这时候取 count_all 随便放都可以
+        counts = {}
+        for ch in tasks:
+            counts[ch] = counts.get(ch,0) + 1
+        max_nums = max(counts.values())
+        max_count = 0
+        for i in counts.values():
+            if i == max_nums:
+                max_count += 1
+        return max(len(tasks), (max_nums - 1) * (n+1) + max_count)
+
 s = Solution()
 r = s.leastInterval(["A","A","A","A","A","A","B","C","D","E","F","G"], 2)
