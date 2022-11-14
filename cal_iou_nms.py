@@ -108,7 +108,7 @@ plot_bbox(boxes, 'k')  # before nms
 
 keep = cal_NMS(boxes, thresh=0.3)
 plt.sca(ax2)
-plot_bbox(boxes[keep], 'r')  # after nms
+plot_bbox(boxes[keep], 'r') # after nms
 plt.show()
 
 

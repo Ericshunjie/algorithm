@@ -1,23 +1,38 @@
 # 手动实现Bachnormalization
 import numpy as np
+from torch import nn
+import torch
 
-def batchNorm(x, mode, params):
-    mode = mode
-    running_mean = params.get('running_mean')
-    running_std = params.get('running_std')
-    beta = params.get('beta')
-    gamma = params.get('gamma')
-    eps = params.get('eps', 1e-5)
-    if mode == "train":
-        samples_mean = np.mean(x, axis=0)
-        samples_std = np.std(x, axis=0)
-        outs = (x - samples_mean) / (samples_std + eps)
-        out = gamma * outs + beta
-        momentum = params.get('momentum')
-        running_mean = momentum * running_mean + (1-momentum) * samples_mean
-        running_std = momentum * running_std + (1 - momentum) * samples_std
-        params['running_mean'] = running_mean
-        params['running_std'] = running_std
-    elif mode == 'test':
-        out = (x - running_mean) / (running_std + eps)
-    return out
+class BatchNorm(nn.Module):
+    def __init__(self, num_features, num_dims=4):
+        if num_dims == 2:
+            shape = (1, num_features)
+        elif num_dims == 4:
+            shape = (1, num_features, 1,1)
+        self.running_mean = torch.zeros(shape)
+        self.running_std = torch.ones(shape)
+        # 这是可以训练的
+        self.gamma = nn.Parameter(torch.ones(shape))
+        self.beta = nn.Parameter(torch.zeros(shape))
+        self.eps = 10e-5
+
+        self.momentum = 0.9
+    def forward(self, x, mode):
+        return self.batchNorm(x, mode)
+
+    def batchNorm(self, x, mode):
+        if mode == "train":
+            if len(x.shape) == 2:
+                x_mean = x.mean(dim=0, keepdim=True)
+                x_std = x.std(dim=0, keepdim=True)
+            else:
+                x_mean = x.mean(dim=(0,2,3), keepdim=True)
+                x_std = x.std(dim=(0,2,3), keepdim=True)
+
+            self.running_mean = self.momentum * self.running_mean + (1-self.momentum) * x_mean
+            self.running_std = self.momentum * self.running_std + (1 - self.momentum) * x_std
+            x_hat = (x - x_mean) / (x_std + self.eps)
+        else:
+            x_hat = (x - self.running_mean) / (self.running_std + self.eps)
+        y = self.gamma * x_hat + self.beta
+        return y
