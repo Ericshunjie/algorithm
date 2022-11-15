@@ -27,27 +27,6 @@ class Solution():
 
 
 
-
-## 二维写法
-# class Solution():
-#     def bagproblem_01(self,w, weight, value):
-#         n = len(weight)
-#         dp = [[0] * (w+1) for _ in range(n)]
-#
-#         for j in range(1, w + 1):
-#             if weight[0] <= j:
-#                 dp[0][j] = value[0]
-#
-#         for i in range(1, n):
-#             for j in range(1, w + 1):
-#                 if j - weight[i] >= 0:
-#                     dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i]] + value[i])
-#                 else:
-#                     dp[i][j] = dp[i - 1][j]
-#         return dp[-1][-1]
-
-
-
 # 一维写法 滚动数组
 ## 由于dp[i][j] = max(dp[i-1][j], dp[i-1][j-weight[i]] + value[i])
 # dp[i][j]都是在上一排的基础上计算得来 进一步可以变为dp[i][j] = max(dp[i][j], dp[i-1][j-weight[i]] + value[i])
@@ -62,6 +41,7 @@ class Solution():
 #         n = len(weight)
 #         dp = [0] * (w + 1)
 #         for i in range(n):
+#             #为什么要反过来遍历，dp[j]的更新依赖于它前面的状态，如果先更新前面的，那个这个时候dp[j-weight[i]]就错误了，不是上一排的数据了；
 #             for j in range(w,-1,-1):
 #                 if j-weight[i] >= 0:
 #                     dp[j] = max(dp[j], dp[j-weight[i]] + value[i])

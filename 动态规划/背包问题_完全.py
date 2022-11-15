@@ -4,7 +4,7 @@ class Solution():
         n = len(weight)
         dp = [0] * (w + 1)
         for i in range(n):
-            for j in range(w + 1): # 主要区别就是背包容量正向遍历
+            for j in range(w + 1): # 主要区别就是背包容量正向遍历，可以重复使用物品，那么
                 if j-weight[i] >= 0:
                     dp[j] = max(dp[j], dp[j-weight[i]] + value[i])
                 print(i,j,dp)
