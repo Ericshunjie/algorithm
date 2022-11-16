@@ -1,24 +1,22 @@
-class Solution:
-    def countSubstrings(self, s: str) -> int:
-        # dp[i][j] 表示si 到 sj 是不是一个回文子串
-        # if i == j:dp[i][j] = 1
-        # if s[i] == s[j]: dp[i][j] = dp[i+1][j-1]
+class Solution(object):
+    def countSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        # dp问题
+        # dp[i][j] 代表字符串s从i到j是否是回文子串 i <= j 只考虑上三角
+        # dp[i][j] = dp[i+1][j-1] and s[i] == s[j]
+        # 初始化 dp[i][i] = 1
         n = len(s)
-        if not n:return 0
-        dp = [[False] * n for _ in range(n)]
+        dp = [[0] * n for _ in range(n)]
         for i in range(n):
-            dp[i][i] = True
-        res = n
-        for i in range(n,-1, -1):
-            for j in range(i+1, n):
-                if s[i] == s[j]:
-                    if i == j - 1:
-                        dp[i][j] = True
-                    else:
-                        dp[i][j] = dp[i+1][j-1]
-                if dp[i][j]:
-                    res += 1
-        return res
-s = Solution()
-r = s.countSubstrings("aaa")
-print(r)
+            dp[i][i] = 1
+        result = n
+        for i in range(n-2,-1,-1):
+            for j in range(i+1,n):
+                # 特别注意当i=j-1的时候也是True
+                if s[i] == s[j] and (dp[i+1][j-1]==1 or i==j-1):
+                    dp[i][j] = 1
+                    result += 1
+        return result
