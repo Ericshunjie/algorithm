@@ -13,9 +13,9 @@ class Solution:
                 if s[i] == s[j]:
                     if i == j - 1 or dp[i + 1][j - 1] == 1:
                         dp[i][j] = 1
-        print(dp)
+        # print(dp)
         def dfs(i, res):
-            print(i,res)
+            # print(i,res)
             if i == n:
                 result.append(res)
                 return
