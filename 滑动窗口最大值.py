@@ -1,3 +1,4 @@
+import heapq
 class Solution(object):
     def maxSlidingWindow(self, nums, k):
         """
