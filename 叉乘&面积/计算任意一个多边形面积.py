@@ -21,7 +21,12 @@ class Solution():
             area += get_area(vectors[i], vectors[i + 1]) / 2
         return area
 
-s = Solution()
-res = s.cal_area([[0,0],[1,1],[2,0],[2,1],[3,2],[3,3],[2,5],[1,4],[0,4]])
-print(res)
+# s = Solution()
+# res = s.cal_area([[0,0],[1,1],[2,0],[2,1],[3,2],[3,3],[2,5],[1,4],[0,4]])
+# print(res)
+
+
+def get_area(v1, v2):
+    return v1[0] * v2[1] - v1[1] * v2[0]
+print(get_area([1,2], [1,0]))
 
