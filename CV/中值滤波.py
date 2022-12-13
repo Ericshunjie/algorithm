@@ -34,7 +34,7 @@ plt.imshow(img)
 # 自己写的逐点遍历太慢
 # img_f = medianFilter(img)
 
-## cv2 只能使用单通道
+## cv2 
 # img1 = cv2.imread(img_path)
 # img1=cv2.cvtColor(img1,cv2.COLOR_BGR2GRAY)
 # img_cvmf = cv2.medianBlur(img1,3)
