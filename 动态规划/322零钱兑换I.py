@@ -12,7 +12,7 @@ class Solution(object):
         # coins.sort()
         n = len(coins)
         if amount == 0:return 0
-        dp = [amount * 2] * (amount + 1)
+        dp = [amount * 2] * (amount + 1) #初始化一个最大值
         dp[0] = 0
         for i in range(1, amount + 1):
             for j in range(n):
